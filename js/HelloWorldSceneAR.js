@@ -30,17 +30,100 @@ var HelloWorldSceneAR = createReactClass({
         <ViroAmbientLight color={"#aaaaaa"} />
         <ViroSpotLight innerAngle={5} outerAngle={90} direction={[0,-1,-.2]} position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
 
+
           <Viro3DObject
-            source={require('./res/emoji_smile/emoji_smile.vrx')}
+            source={require('./res/Magikarp/MagikarpF.vrx')}
             position={[0, 0, -1]}
-            scale={[.2, .2, .2]}
+            scale={[.002, .002, .002]}
             type="VRX"
             dragType="FixedDistance" onDrag={()=>{}}
+            animation={{name:'animateImage', run:true}} 
+          />
+
+                    <Viro3DObject
+            source={require('./res/Magikarp/MagikarpF.vrx')}
+            position={[2, -1, -1]}
+            scale={[.002, .002, .002]}
+            type="VRX"
+            dragType="FixedDistance" onDrag={()=>{}}
+            animation={{name:'animateImage', run:true}} 
+          />
+
+                    <Viro3DObject
+            source={require('./res/Magikarp/MagikarpF.vrx')}
+            position={[2, 0, -1]}
+            scale={[.002, .002, .002]}
+            type="VRX"
+            dragType="FixedDistance" onDrag={()=>{}}
+            animation={{name:'animateImage', run:true}} 
+          />
+
+                    <Viro3DObject
+            source={require('./res/Magikarp/MagikarpF.vrx')}
+            position={[0, 2, -1]}
+            scale={[.002, .002, .002]}
+            type="VRX"
+            dragType="FixedDistance" onDrag={()=>{}}
+            animation={{name:'animateImage', run:true}} 
+          />
+
+                    <Viro3DObject
+            source={require('./res/Magikarp/MagikarpF.vrx')}
+            position={[2, 0, 1]}
+            scale={[.002, .002, .002]}
+            type="VRX"
+            dragType="FixedDistance" onDrag={()=>{}}
+            animation={{name:'animateImage', run:true}} 
+          />
+                              <Viro3DObject
+            source={require('./res/Magikarp/MagikarpF.vrx')}
+            position={[2, 1, 1]}
+            scale={[.002, .001, .002]}
+            type="VRX"
+            dragType="FixedDistance" onDrag={()=>{}}
+            animation={{name:'animateImage', run:true}} 
+          />
+                              <Viro3DObject
+            source={require('./res/Magikarp/MagikarpF.vrx')}
+            position={[1, 5, 2]}
+            scale={[.002, .002, .002]}
+            type="VRX"
+            dragType="FixedDistance" onDrag={()=>{}}
+            animation={{name:'animateImage', run:true}} 
+          />
+                              <Viro3DObject
+            source={require('./res/Magikarp/MagikarpF.vrx')}
+            position={[2, 1, 1]}
+            scale={[.002, .002, .002]}
+            type="VRX"
+            dragType="FixedDistance" onDrag={()=>{}}
+            animation={{name:'animateImage', run:true}} 
+          />
+                              <Viro3DObject
+            source={require('./res/Magikarp/MagikarpF.vrx')}
+            position={[3, 1, 1]}
+            scale={[.001, .001, .001]}
+            type="VRX"
+            dragType="FixedDistance" onDrag={()=>{}}
+            animation={{name:'animateImage', run:true}} 
+          />
+                              <Viro3DObject
+            source={require('./res/Magikarp/MagikarpF.vrx')}
+            position={[1, 1, 1]}
+            scale={[.002, .002, .002]}
+            type="VRX"
+            dragType="FixedDistance" onDrag={()=>{}}
+            animation={{name:'animateImage', run:true}} 
           />
 
       </ViroARScene>
     );
   },
+});
+
+ViroAnimations.registerAnimations({
+  animateImage:{properties:{scaleX:.01, scaleY:.01, scaleZ:.01, opacity: 1},  
+        easing:"Bounce", duration: 5000},
 });
 
 var styles = StyleSheet.create({
