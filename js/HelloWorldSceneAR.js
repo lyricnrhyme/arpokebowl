@@ -10,6 +10,8 @@ import {
   ViroText,
   ViroMaterials,
   ViroBox,
+  ViroImage,
+  ViroSkyBox,
   Viro3DObject,
   ViroAmbientLight,
   ViroSpotLight,
@@ -36,6 +38,8 @@ const HelloWorldSceneAR = createReactClass({
     return (
 
       <ViroARScene onTrackingUpdated={()=>{this.setState({text : "Hello World!"})}}>
+
+
       {/* <ViroSound paused={false}
            muted={false}
            source={require('./sound/Battle.mp3')}
@@ -144,6 +148,14 @@ const HelloWorldSceneAR = createReactClass({
             animation={{ name: "spin", run: true, loop: true }}
           />
         </ViroNode>
+
+        <ViroImage
+    height={10}
+    width={10}
+    source={require('./res/blueWater.png')}
+    opacity={0.5}
+ />
+
       </ViroARScene>
     );
   },
