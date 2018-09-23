@@ -69,13 +69,6 @@ const HelloWorldSceneAR = createReactClass({
           }}
         />
 
-        <Viro360Image
-      source={require("./res/blueWater2.png")}
-      format="RGBA8"
-      onLoadStart={this._onLoadStart}
-      onLoadEnd={this._onLoadEnd}
-      onError={this._onError} />
-
         {this.state.activeFish.map((item, i) => {
           return (
             <Viro3DObject
