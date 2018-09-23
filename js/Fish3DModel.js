@@ -17,7 +17,7 @@ class Fish3DModel extends Component {
     this.props.position = [1, 1, 1]
   }
 
-  onClickEvent = function() {
+  onClickEvent = function () {
     this.props.position = [1, 1, 1]
   }
 
@@ -25,24 +25,21 @@ class Fish3DModel extends Component {
     return (
       <ViroNode onDrag={this.props.onDrag || function () { }} dragType={this.props.dragType} animation={this.props.animation}>
 
-        <ViroText
-          text={this.props.species}
+        {/* <ViroText
+          text={this.props.description}
           color="red"
           width={2} height={2}
           style={{ fontFamily: "Arial", fontSize: 20, fontStyle: "italic" }}
           position={[this.props.position[0], this.props.position[1] + 0.5, this.props.position[2]]}
-        />
+        /> */}
 
 
         <ViroText
-          text="TestDescription"
+          text={`${this.props.species} ${this.props.description}`}
           textAlign="left"
-          textAlignVertical="top"
-          textLineBreakMode="justify"
-          textClipMode="clipToBounds"
-          color="#ff0000"
+          color="cornflowerblue"
           width={2} height={2}
-          style={{ fontFamily: "Arial", fontSize: 20, fontStyle: "italic" }}
+          style={{ fontFamily: "Helvetica", fontSize: 8, fontStyle: "italic" }}
           position={[this.props.position[0], this.props.position[1] - 0.5, this.props.position[2]]}
         />
 
@@ -52,7 +49,7 @@ class Fish3DModel extends Component {
           position={this.props.position}
           scale={this.props.scale}
           rotation={this.props.rotation}
-          onClick={() => {this.handlePopUp()}}
+          onClick={() => { this.handlePopUp() }}
         />
       </ViroNode>
     );

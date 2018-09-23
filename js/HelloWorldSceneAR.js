@@ -20,6 +20,7 @@ import {
   ViroAnimations,
 } from 'react-viro';
 import Fish3DModel from './Fish3DModel';
+import fishData from './fishy.json';
 // TODO -
 
 const createReactClass = require('create-react-class');
@@ -27,28 +28,28 @@ const HelloWorldSceneAR = createReactClass({
   getInitialState() {
     return {
       text: "Initializing AR...",
-      activeFish: [{}, {}, {}],
+      activeFish: Object.values(fishData),
       currentAnim: "moveInstructions"
     };
   },
 
   render: function () {
     return (
-      <ViroARScene onTrackingUpdated={()=>{this.setState({text : "Hello World!"})}}>
-      <ViroSound paused={false}
-           muted={false}
-           source={require('./sound/ukulele.mp3')}
-           loop={false}
-           volume={.75}
-           onFinish={this.onFinishSound}
-           onError={this.onErrorSound}/>
-          <ViroSound paused={false}
-           muted={false}
-           source={require('./sound/magikarp.mp3')}
-           loop={false}
-           volume={1}
-           onFinish={this.onFinishSound}
-           onError={this.onErrorSound}/>
+      <ViroARScene onTrackingUpdated={() => { this.setState({ text: "Hello World!" }) }}>
+        <ViroSound paused={false}
+          muted={false}
+          source={require('./sound/ukulele.mp3')}
+          loop={false}
+          volume={.75}
+          onFinish={this.onFinishSound}
+          onError={this.onErrorSound} />
+        <ViroSound paused={false}
+          muted={false}
+          source={require('./sound/magikarp.mp3')}
+          loop={false}
+          volume={1}
+          onFinish={this.onFinishSound}
+          onError={this.onErrorSound} />
 
         <ViroAmbientLight color="#ffffff" />
 
@@ -90,10 +91,10 @@ const HelloWorldSceneAR = createReactClass({
           return (
             <Fish3DModel
               key={i}
-              species="Magikarp"
+              // species={item.name}
+              // description={item.description}
               source={require('./res/Magikarp/MagikarpF.vrx')}
               position={[Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2]}
-              // position={ [-3, 0, -1] }
               type="VRX"
               scale={[.01, .01, .01]}
               rotation={[90, 90, 180]}
@@ -113,6 +114,8 @@ const HelloWorldSceneAR = createReactClass({
         }
 
         <Fish3DModel
+          species="Magikarp"
+          description="Use splash"
           source={require('./res/Magikarp/MagikarpF.vrx')}
           position={[1, .5, -1]}
           type="VRX"
@@ -133,6 +136,8 @@ const HelloWorldSceneAR = createReactClass({
 
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
+            species="Gyarados"
+            description="Water/Flying type"
             source={require('./res/Gyarados/GyaradosM.vrx')}
             position={[-2, 1, -1]}
             scale={[.0025, .0025, .0025]}
@@ -146,6 +151,8 @@ const HelloWorldSceneAR = createReactClass({
 
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
+            species="Psyduck"
+            description="Confused"
             source={require('./res/Psyduck/Psyduck.vrx')}
             position={[-1, 0.5, -2]}
             scale={[.0035, .0035, .0035]}
@@ -158,6 +165,8 @@ const HelloWorldSceneAR = createReactClass({
 
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
+            species="Dragonair"
+            description="Shiny pokemon"
             source={require('./res/Dragonair/Dragonair.vrx')}
             position={[-1, 1, -1]}
             scale={[.002, .002, .002]}
@@ -170,6 +179,8 @@ const HelloWorldSceneAR = createReactClass({
 
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
+            species="Wailord"
+            description="Float whale"
             source={require('./res/Wailord/Wailord.vrx')}
             position={[1, .5, -1]}
             scale={[.0005, .0005, .0005]}
@@ -182,6 +193,8 @@ const HelloWorldSceneAR = createReactClass({
 
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
+            species="Paras"
+            description="Crab-bug pokemon"
             source={require('./res/Paras/Paras.vrx')}
             position={[0, 1, -1]}
             scale={[.005, .005, .005]}
@@ -194,6 +207,8 @@ const HelloWorldSceneAR = createReactClass({
 
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
+            species="Squirtle"
+            description="Turtle"
             source={require('./res/Squirtle/Squirtle.vrx')}
             position={[0, 0.5, -1]}
             scale={[.006, .006, .006]}

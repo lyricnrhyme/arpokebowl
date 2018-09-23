@@ -1,26 +1,26 @@
 {
   "magikarp": {
-    "name": "magikarp",
-    "description": "Just a late bloomer"
+    "name": "Magikarp",
+    "description": "Use splash"
   },
-  "patrickStar": {
-    "name": "patrickStar",
-    "description": "Is mayonaise an instrument?"
-  },
-  "doodleBob": {
-    "name": "doodleBob",
-    "description": "Mehoy Minoy"
-  },
-  "gyarados": {
-    "name": "gyarados",
-    "description": "Puberty"
-  },
-  "psyduck": {
-    "name": "psyduck",
-    "description": "Same"
+  "dragonair": {
+    "name": "Dragonair",
+    "description": "Shiny pokemon"
   },
   "wailord": {
     "name": "wailord",
-    "description": "All Hail"
+    "description": "Float whale"
+  },
+  "gyarados": {
+    "name": "Gyarados",
+    "description": "Water/Flying type"
+  },
+  "psyduck": {
+    "name": "Psyduck",
+    "description": "Confusion"
+  },
+  "paras": {
+    "name": "Paras",
+    "description": "Crab-bug pokemon"
   }
 }
