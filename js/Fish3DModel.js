@@ -2,22 +2,23 @@
 
 import React, { Component } from 'react';
 import { Viro3DObject, ViroNode, ViroText } from 'react-viro';
-const onClickEvent = function() {
-  this.setState({name : this.state.name ? "" : "TestName"});
-  this.setState({description : this.state.description ? "" : "TestDescription"});
+const onClickEvent = function () {
+  this.setState({
+    name: this.state.name ? "" : "",
+    description: this.state.description ? "" : ""
+  });
+  // this.setState({description : this.state.description ? "" : ""});
 }
 class Fish3DModel extends Component {
   constructor(props) {
     super(props);
-    this.species = props.species;
-    this.handlePopUp = this.handlePopUp.bind(this);
+    this.state = {
+      species: props.species,
+      description: props.description
+    }
   }
   handleEvent = () => {
     console.log(this.props);
-  }
-
-  handlePopUp = () => {
-    this.props.position = [1, 1, 1]
   }
 
   onClickEvent = function () {
@@ -38,11 +39,11 @@ class Fish3DModel extends Component {
 
 
         <ViroText
-          text={`${this.props.species} ${this.props.description}`}
-          textAlign="left"
-          color="cornflowerblue"
+          text={`${this.state.species} ${this.state.description}`}
+          textAlign="center"
+          color="red"
           width={2} height={2}
-          style={{ fontFamily: "Helvetica", fontSize: 8, fontStyle: "italic" }}
+          style={{ fontFamily: "Helvetica", fontSize: 10, fontStyle: "italic" }}
           position={[this.props.position[0], this.props.position[1] - 0.5, this.props.position[2]]}
         />
 
@@ -52,7 +53,7 @@ class Fish3DModel extends Component {
           position={this.props.position}
           scale={this.props.scale}
           rotation={this.props.rotation}
-          onClick={() => { this.handlePopUp() }}
+          onClick={onClickEvent.bind(this)}
         />
       </ViroNode>
     );
