@@ -18,13 +18,14 @@ var createReactClass = require('create-react-class');
 var HelloWorldSceneAR = createReactClass({
   getInitialState() {
     return {
-      text : "Initializing AR..."
+      text : "Initializing AR...",
+      currentAnim:"moveLeftRight"
     };
   },
 
   render: function() {
     return (
-      <ViroARScene onTrackingInitialized={()=>{this.setState({text : "Hello World!"})}}>
+      <ViroARScene onTrackingUpdated={()=>{this.setState({text : "Hello World!"})}}>
         <ViroText text={this.state.text} scale={[.1, .1, .1]} height={1} width={4} position={[0, .5, -1]} style={styles.helloWorldTextStyle} />
 
         <ViroAmbientLight color={"#aaaaaa"} />
@@ -33,22 +34,40 @@ var HelloWorldSceneAR = createReactClass({
 
           <Viro3DObject
             source={require('./res/Magikarp/MagikarpF.vrx')}
-            position={[0, 0, -1]}
-            scale={[.002, .002, .002]}
+            position={[-3, 0, -1]}
+            scale={[.01, .01, .01]}
             rotation={[90, 90, 180]}
             type="VRX"
             dragType="FixedDistance" onDrag={()=>{}}
-            animation={{name:'animateImage', run:true}} 
+            onClick={this._switchAnimation}
+            animation={{name:this.state.currentAnim, 
+              run:true, 
+              interruptible: true}}
           />
 
       </ViroARScene>
     );
   },
-});
+  _switchAnimation() {
+    if(this.state.currentAnim == "moveLeftRight") {
+        this.setState({
+          currentAnim:"stop", 
+        });
+    } else {
+       this.setState({
+          currentAnim:"moveLeftRight",
+       });
+    }
+ },     
+}
+);
 
 ViroAnimations.registerAnimations({
-  animateImage:{properties:{scaleX:.01, scaleY:.01, scaleZ:.01, opacity: 1},  
-        easing:"Bounce", duration: 5000},
+  moveRight:{properties:{positionX:"+=1"}, duration: 10000},
+  stop:{properties:{positionX:"-=0"}, duration: 0},
+  moveLeftRight:[
+    ["moveRight", "stop"],
+  ]
 });
 
 var styles = StyleSheet.create({
