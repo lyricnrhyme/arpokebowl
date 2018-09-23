@@ -34,27 +34,26 @@ const HelloWorldSceneAR = createReactClass({
 
   render: function () {
     return (
-
-      <ViroARScene onTrackingUpdated={() => { this.setState({ text: "Hello World!" }) }}>
-        {/* <ViroSound paused={false}
+      <ViroARScene onTrackingUpdated={()=>{this.setState({text : "Hello World!"})}}>
+      <ViroSound paused={false}
            muted={false}
-           source={require('./sound/Battle.mp3')}
+           source={require('./sound/ukulele.mp3')}
            loop={false}
            volume={.75}
            onFinish={this.onFinishSound}
-           onError={this.onErrorSound}/> */}
-        <ViroSound paused={true}
-          muted={false}
-          source={require('./sound/whosthatpokemon.mp3')}
-          loop={false}
-          volume={.75}
-          onFinish={this.onFinishSound}
-          onError={this.onErrorSound} />
+           onError={this.onErrorSound}/>
+          <ViroSound paused={false}
+           muted={false}
+           source={require('./sound/magikarp.mp3')}
+           loop={false}
+           volume={.75}
+           onFinish={this.onFinishSound}
+           onError={this.onErrorSound}/>
 
         <ViroAmbientLight color="#ffffff" />
 
         <ViroParticleEmitter
-          position={[0, 4.5, 0]}
+          position={[0, -4, 0]}
           duration={2000}
           visible={true}
           delay={0}
@@ -66,7 +65,7 @@ const HelloWorldSceneAR = createReactClass({
             source: require("./res/bubble.png"),
             height: 1,
             width: 1,
-            bloomThreshold: 1.0
+            bloomThreshold: 100
           }}
 
           spawnBehavior={{
@@ -77,7 +76,7 @@ const HelloWorldSceneAR = createReactClass({
               params: [20, 1, 20],
               spawnOnSurface: false
             },
-            maxParticles: 100
+            maxParticles: 40
           }}
 
           particlePhysics={{
