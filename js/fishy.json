@@ -1,0 +1,26 @@
+{
+  "magikarp": {
+    "name": "magikarp",
+    "description": "Just a late bloomer"
+  },
+  "patrickStar": {
+    "name": "patrickStar",
+    "description": "Is mayonaise an instrument?"
+  },
+  "doodleBob": {
+    "name": "doodleBob",
+    "description": "Mehoy Minoy"
+  },
+  "gyarados": {
+    "name": "gyarados",
+    "description": "Puberty"
+  },
+  "psyduck": {
+    "name": "psyduck",
+    "description": "Same"
+  },
+  "wailord": {
+    "name": "wailord",
+    "description": "All Hail"
+  }
+}

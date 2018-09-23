@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import {
   ViroARScene,
+  Viro360Image,
+  ViroARPlane,
+  ViroScene,
   ViroText,
   ViroMaterials,
   ViroBox,
