@@ -15,8 +15,9 @@ import {
   ViroParticleEmitter,
   ViroAnimations,
 } from 'react-viro';
+import Fish3DModel from './Fish3DModel';
 // TODO -
-const onClickEvent = function() { console.log("Hello world!"); }
+
 var createReactClass = require('create-react-class');
 var HelloWorldSceneAR = createReactClass({
   getInitialState() {
@@ -97,8 +98,9 @@ var HelloWorldSceneAR = createReactClass({
 
         {this.state.activeFish.map((item, i) => {
           return(
-            <Viro3DObject
+            <Fish3DModel
               key={i}
+              species="Magikarp"
               source={ require('./res/Magikarp/MagikarpF.vrx') }
               position={[Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2]}
               // position={ [-3, 0, -1] }
@@ -108,7 +110,6 @@ var HelloWorldSceneAR = createReactClass({
               // direction={[0,-1,-.2]}
               dragType="FixedToWorld"
               onDrag={ () => { } }
-              onClick={ this._switchAnimation}
               animation={
                 {
                   name: this.state.currentAnim,
