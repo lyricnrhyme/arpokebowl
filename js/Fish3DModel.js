@@ -2,7 +2,10 @@
 
 import React, { Component } from 'react';
 import { Viro3DObject, ViroNode, ViroText } from 'react-viro';
-
+const onClickEvent = function() {
+  this.setState({name : this.state.name ? "" : "TestName"});
+  this.setState({description : this.state.description ? "" : "TestDescription"});
+}
 class Fish3DModel extends Component {
   constructor(props) {
     super(props);
