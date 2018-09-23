@@ -130,7 +130,7 @@ var HelloWorldSceneAR = createReactClass({
             // direction={[0,-1,-.2]}
             dragType="FixedToWorld"
             onDrag={ () => { } }
-            onClick={ this._switchAnimation}
+            // onClick={ this._switchAnimation }
             animation={
               {
                 name: this.state.currentAnim,
