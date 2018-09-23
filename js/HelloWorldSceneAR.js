@@ -16,6 +16,7 @@ import {
   ViroSound,
   ViroAnimations,
 } from 'react-viro';
+import Fish3DModel from './Fish3DModel';
 // TODO -
 
 const createReactClass = require('create-react-class');
@@ -84,19 +85,19 @@ const HelloWorldSceneAR = createReactClass({
         />
 
         {this.state.activeFish.map((item, i) => {
-          return (
-            <Viro3DObject
+          return(
+            <Fish3DModel
               key={i}
-              source={require('./res/Magikarp/MagikarpF.vrx')}
-              position={[Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2]}
+              species="Magikarp"
+              source={ require('./res/Magikarp/MagikarpF.vrx') }
+              position={[Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2]}
               // position={ [-3, 0, -1] }
               type="VRX"
               scale={[.01, .01, .01]}
               rotation={[90, 90, 180]}
               // direction={[0,-1,-.2]}
               dragType="FixedToWorld"
-              onDrag={() => { }}
-              onClick={this._test.bind(null, this)}
+              onDrag={ () => { } }
               animation={
                 {
                   name: this.state.currentAnim,
