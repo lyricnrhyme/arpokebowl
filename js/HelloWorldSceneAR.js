@@ -143,7 +143,7 @@ const HelloWorldSceneAR = createReactClass({
             direction={[0, -1, -.2]}
             animation={{ name: "spin", run: true, loop: true }}
           />
-        </ViroNode>,
+        </ViroNode>
 
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
@@ -155,7 +155,7 @@ const HelloWorldSceneAR = createReactClass({
             direction={[0, -1, -.2]}
           // animation={{ name: "spin", run: true, loop: true }}
           />
-        </ViroNode> ,
+        </ViroNode>
 
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
@@ -167,7 +167,7 @@ const HelloWorldSceneAR = createReactClass({
             direction={[0, -1, -.2]}
           // animation={{ name: "spin", run: true, loop: true }}
           />
-        </ViroNode> ,
+        </ViroNode>
 
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
