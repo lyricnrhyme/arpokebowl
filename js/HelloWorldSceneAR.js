@@ -15,6 +15,7 @@ import {
   ViroSpotLight,
   ViroARPlaneSelector,
   ViroNode,
+  ViroAnimations,
 } from 'react-viro';
 
 export default class HelloWorldSceneAR extends Component {
@@ -35,10 +36,13 @@ export default class HelloWorldSceneAR extends Component {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized} >
 
+        {/* Hello World Text */}
         <ViroText text={this.state.text} scale={[.5, .5, .5]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} />
 
-        <ViroBox position={[0, -.5, -1]} scale={[.3, .3, .1]} materials={["grid"]} />
+        {/* Grid Box */}
+        <ViroBox position={[0, -.5, -1]} scale={[.3, .3, .1]} materials={["grid"]} animation={{ name: "rotate", run: true, loop: true }} />
 
+        {/* Emoji */}
         <ViroAmbientLight color={"#aaaaaa"} />
         <ViroSpotLight innerAngle={5} outerAngle={90} direction={[0, -1, -.2]}
           position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
@@ -68,6 +72,7 @@ export default class HelloWorldSceneAR extends Component {
   }
 }
 
+// Styling for text
 var styles = StyleSheet.create({
   helloWorldTextStyle: {
     fontFamily: 'Arial',
@@ -78,9 +83,20 @@ var styles = StyleSheet.create({
   },
 });
 
+//Styling for the grid
 ViroMaterials.createMaterials({
   grid: {
     diffuseTexture: require('./res/grid_bg.jpg'),
+  },
+});
+
+//Animation for the grid
+ViroAnimations.registerAnimations({
+  rotate: {
+    properties: {
+      rotateY: "+=90"
+    },
+    duration: 250, //.25 seconds
   },
 });
 
