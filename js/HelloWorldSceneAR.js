@@ -21,42 +21,65 @@ var HelloWorldSceneAR = createReactClass({
   getInitialState() {
     return {
       text : "Initializing AR...",
-      activeFish : [{},{},{}]
+      activeFish : [{},{},{}],
+      currentAnim:"moveInstructions"
     };
   },
 
   render: function() {
     return (
-      <ViroARScene onTrackingInitialized={()=>{this.setState({text : "Hello World!"})}}>
-        <ViroText text={this.state.text} scale={[.1, .1, .1]} height={1} width={4} position={[0, .5, -1]} style={styles.helloWorldTextStyle} />
-
+      <ViroARScene onTrackingUpdated={()=>{this.setState({text : "Hello World!"})}}>
         <ViroAmbientLight color={"#aaaaaa"} />
         <ViroSpotLight innerAngle={5} outerAngle={90} direction={[0,-1,-.2]} position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
 
-          // dynamic spawning of fish using arguments in this.state.activeFish
-          {
-            this.state.activeFish.map((item, i) => {
-              return (<Viro3DObject
-                source={require('./res/Magikarp/MagikarpF.vrx')}
-                position={[Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2]}
-                scale={[.002, .002, .002]}
-                rotation={[90, 90, 180]}
-                direction={[0,-1,-.2]}
-                type="VRX"
-                dragType="FixedDistance" onDrag={()=>{}}
-                animation={{name:'animateImage', run:true}}
-                onClick={() => console.log("hello world")}
-              />)
-            })
-          }
+        {this.state.activeFish.map((item, i) => {
+          return(
+            <Viro3DObject
+              key={i}
+              source={ require('./res/Magikarp/MagikarpF.vrx') }
+              position={[Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2]}
+              // position={ [-3, 0, -1] }
+              type="VRX"
+              scale={ [.01, .01, .01] }
+              rotation={ [90, 90, 180] }
+              // direction={[0,-1,-.2]}
+              dragType="FixedToWorld"
+              onDrag={ () => { } }
+              onClick={ this._switchAnimation}
+              animation={
+                {
+                  name: this.state.currentAnim,
+                  run: true,
+                  interruptible: true
+                }
+              }
+            />
+          )
+        })
+        }
       </ViroARScene>
     );
   },
-});
+  _switchAnimation() {
+    if(this.state.currentAnim == "moveInstructions") {
+        this.setState({
+          currentAnim:"stop", 
+        });
+    } else {
+       this.setState({
+          currentAnim:"moveInstructions",
+       });
+    }
+ },     
+}
+);
 
 ViroAnimations.registerAnimations({
-  animateImage:{properties:{scaleX:.01, scaleY:.01, scaleZ:.01, opacity: 1},
-        easing:"Bounce", duration: 5000},
+  moveRight:{properties:{positionX:"+=1"}, duration: 10000},
+  stop:{properties:{positionX:"-=0"}, duration: 0},
+  moveInstructions:[
+    ["moveRight", "stop"],
+  ]
 });
 
 var styles = StyleSheet.create({
