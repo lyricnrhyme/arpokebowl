@@ -36,20 +36,19 @@ const HelloWorldSceneAR = createReactClass({
 
   render: function () {
     return (
-
       <ViroARScene onTrackingUpdated={()=>{this.setState({text : "Hello World!"})}}>
 
 
-      {/* <ViroSound paused={false}
+      <ViroSound paused={false}
            muted={false}
-           source={require('./sound/Battle.mp3')}
+           source={require('./sound/ukulele.mp3')}
            loop={false}
            volume={.75}
            onFinish={this.onFinishSound}
-           onError={this.onErrorSound}/> */}
-      <ViroSound paused={true}
+           onError={this.onErrorSound}/>
+          <ViroSound paused={false}
            muted={false}
-           source={require('./sound/whosthatpokemon.mp3')}
+           source={require('./sound/magikarp.mp3')}
            loop={false}
            volume={.75}
            onFinish={this.onFinishSound}
@@ -58,7 +57,7 @@ const HelloWorldSceneAR = createReactClass({
         <ViroAmbientLight color="#ffffff" />
 
         <ViroParticleEmitter
-          position={[0, 4.5, 0]}
+          position={[0, -4, 0]}
           duration={2000}
           visible={true}
           delay={0}
@@ -70,7 +69,7 @@ const HelloWorldSceneAR = createReactClass({
             source: require("./res/bubble.png"),
             height: 1,
             width: 1,
-            bloomThreshold: 1.0
+            bloomThreshold: 100
           }}
 
           spawnBehavior={{
@@ -81,7 +80,7 @@ const HelloWorldSceneAR = createReactClass({
               params: [20, 1, 20],
               spawnOnSurface: false
             },
-            maxParticles: 100
+            maxParticles: 40
           }}
 
           particlePhysics={{
@@ -92,19 +91,19 @@ const HelloWorldSceneAR = createReactClass({
         />
 
         {this.state.activeFish.map((item, i) => {
-          return(
+          return (
             <Fish3DModel
               key={i}
               species="Magikarp"
-              source={ require('./res/Magikarp/MagikarpF.vrx') }
-              position={[Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2]}
+              source={require('./res/Magikarp/MagikarpF.vrx')}
+              position={[Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2]}
               // position={ [-3, 0, -1] }
               type="VRX"
               scale={[.01, .01, .01]}
               rotation={[90, 90, 180]}
               // direction={[0,-1,-.2]}
               dragType="FixedToWorld"
-              onDrag={ () => { } }
+              onDrag={() => { }}
               animation={
                 {
                   name: this.state.currentAnim,
@@ -126,7 +125,7 @@ const HelloWorldSceneAR = createReactClass({
           // direction={[0,-1,-.2]}
           dragType="FixedToWorld"
           onDrag={() => { }}
-          onClick={ this._test.bind(null, this) }
+          onClick={this._test.bind(null, this)}
           animation={
             {
               name: this.state.currentAnim,
@@ -149,12 +148,14 @@ const HelloWorldSceneAR = createReactClass({
           />
         </ViroNode>
 
-        <ViroImage
-    height={10}
-    width={10}
+        <Viro360Image
     source={require('./res/blueWater.png')}
-    opacity={0.5}
- />
+    rotation={[0, 45, 0]}
+    format="RGBA8"
+    onLoadStart={this._onLoadStart}
+    onLoadEnd={this._onLoadEnd}
+    style={"opacity:0.7"}
+    onError={this._onError} />
 
       </ViroARScene>
     );
