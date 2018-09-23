@@ -46,6 +46,8 @@ export default class HelloWorldSceneAR extends Component {
         <ViroAmbientLight color={"#aaaaaa"} />
         <ViroSpotLight innerAngle={5} outerAngle={90} direction={[0, -1, -.2]}
           position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
+
+        {/* Emoji */}
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Viro3DObject
             source={require('./res/emoji_smile/emoji_smile.vrx')}
@@ -55,7 +57,42 @@ export default class HelloWorldSceneAR extends Component {
             position={[-.5, .5, -1]}
             scale={[.2, .2, .2]}
             type="VRX" />
+
         </ViroNode>
+
+        {/* Magikarp */}
+        <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
+          <Viro3DObject
+            source={require('./res/Magikarp/MagikarpF.vrx')}
+            position={[0, 0, -1]}
+            scale={[.002, .002, .002]}
+            rotation={[90, 90, 180]}
+            type="VRX"
+            dragType="FixedDistance" onDrag={() => { }}
+            animation={{ name: 'animateImage', run: true }}
+          />
+        </ViroNode>
+
+        <Viro3DObject
+          source={require('./res/Magikarp/MagikarpF.vrx')}
+          position={[-2, -1, 1]}
+          scale={[.002, .001, .002]}
+          type="VRX"
+          dragType="FixedDistance" onDrag={() => { }}
+          animation={{ name: 'animateImage', run: true }}
+        />
+
+        <Viro3DObject
+          source={require('./res/Magikarp/MagikarpF.vrx')}
+          position={[Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2]}
+          // position={[2,1,1,]}
+          scale={[.002, .002, .002]}
+          rotation={[90, 90, 180]}
+          type="VRX"
+          direction={[0, -1, -.2]}
+          animation={{ name: "rotate", run: true, loop: true }}
+        />
+
 
       </ViroARScene>
     );
@@ -97,6 +134,19 @@ ViroAnimations.registerAnimations({
       rotateY: "+=90"
     },
     duration: 250, //.25 seconds
+  },
+});
+
+ViroAnimations.registerAnimations({
+  spin: {
+    properties: {
+      rotateY: "+=90"
+    },
+    duration: 250, //.25 seconds
+  },
+  animateImage: {
+    properties: { scaleX: .01, scaleY: .01, scaleZ: .01, opacity: 1 },
+    easing: "Bounce", duration: 5000
   },
 });
 
