@@ -46,7 +46,7 @@ const HelloWorldSceneAR = createReactClass({
            muted={false}
            source={require('./sound/magikarp.mp3')}
            loop={false}
-           volume={.75}
+           volume={1}
            onFinish={this.onFinishSound}
            onError={this.onErrorSound}/>
 
