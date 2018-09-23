@@ -53,7 +53,7 @@ const HelloWorldSceneAR = createReactClass({
         <ViroAmbientLight color="#ffffff" />
 
         <ViroParticleEmitter
-          position={[0, 4.5, 0]}
+          position={[0, -4, 0]}
           duration={2000}
           visible={true}
           delay={0}
@@ -76,7 +76,7 @@ const HelloWorldSceneAR = createReactClass({
               params: [20, 1, 20],
               spawnOnSurface: false
             },
-            maxParticles: 100
+            maxParticles: 40
           }}
 
           particlePhysics={{
