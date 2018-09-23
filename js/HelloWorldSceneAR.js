@@ -12,6 +12,7 @@ import {
   ViroSpotLight,
   ViroARPlaneSelector,
   ViroNode,
+  ViroParticleEmitter,
   ViroAnimations,
 } from 'react-viro';
 var createReactClass = require('create-react-class');
@@ -27,8 +28,68 @@ var HelloWorldSceneAR = createReactClass({
     return (
       <ViroARScene onTrackingUpdated={()=>{this.setState({text : "Hello World!"})}}>
         <ViroText text={this.state.text} scale={[.1, .1, .1]} height={1} width={4} position={[0, .5, -1]} style={styles.helloWorldTextStyle} />
+        <ViroParticleEmitter
+  position={[0, 4.5, 0]}
+  duration={2000}
+  visible={true}
+  delay={0}
+  run={true}
+  loop={true}
+  fixedToEmitter={false}
 
-        <ViroAmbientLight color={"#aaaaaa"} />
+  image={{
+    source:require("./res/bubble.png"),                 
+    height:0.1,
+    width:0.1,
+    bloomThreshold:1.0
+  }}
+
+  spawnBehavior={{
+    particleLifetime:[4000,4000],
+    emissionRatePerSecond:[150, 200], 
+    spawnVolume:{
+      shape:"box", 
+      params:[20, 1, 20], 
+      spawnOnSurface:false
+    },
+    maxParticles:100
+  }}
+
+  particleAppearance={{
+    opacity:{
+      initialRange:[0, 0],
+      factor:"time",
+      interpolation:[
+        {endValue:0.5, interval:[0,500]},
+        {endValue:1.0, interval:[4000,5000]}
+      ]
+    },
+
+    // rotation:{
+    //   initialRange:[0, 360],
+    //   factor:"time",
+    //   interpolation:[
+    //     {endValue:1080, interval:[0,5000]},
+    //   ]
+    // },
+
+    scale:{
+      initialRange:[[10,10,10], [0,0,0]],
+      factor:"distance",
+      interpolation:[
+        {endValue:[3,3,3], interval:[4000,0]},
+        {endValue:[0,0,0], interval:[5000,4000]}
+      ]
+    },
+  }}
+
+  particlePhysics={{
+    velocity:{
+    initialRange:[[-2,.5,0], [2,3.5,0]]}
+  }}
+/>
+
+        <ViroAmbientLight color="#0077be"/>
         <ViroSpotLight innerAngle={5} outerAngle={90} direction={[0,-1,-.2]} position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
 
         <Viro3DObject
