@@ -3,11 +3,8 @@
 import React, { Component } from 'react';
 import { Viro3DObject, ViroNode, ViroText } from 'react-viro';
 const onClickEvent = function () {
-  this.setState({
-    name: this.state.name ? "" : "",
-    description: this.state.description ? "" : ""
-  });
-  // this.setState({description : this.state.description ? "" : ""});
+  this.setState({ name: this.state.name ? "" : "" });
+  this.setState({ description: this.state.description ? "" : "" });
 }
 class Fish3DModel extends Component {
   constructor(props) {
