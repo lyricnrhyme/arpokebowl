@@ -37,10 +37,10 @@ export default class HelloWorldSceneAR extends Component {
       <ViroARScene onTrackingUpdated={this._onInitialized} >
 
         {/* Hello World Text */}
-        <ViroText text={this.state.text} scale={[.5, .5, .5]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} />
+        {/* <ViroText text={this.state.text} scale={[.5, .5, .5]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} /> */}
 
         {/* Grid Box */}
-        <ViroBox position={[0, -.5, -1]} scale={[.3, .3, .1]} materials={["grid"]} animation={{ name: "rotate", run: true, loop: true }} />
+        {/* <ViroBox position={[0, -.5, -1]} scale={[.3, .3, .1]} materials={["grid"]} animation={{ name: "rotate", run: true, loop: true }} /> */}
 
         {/* Emoji */}
         <ViroAmbientLight color={"#aaaaaa"} />
@@ -48,17 +48,17 @@ export default class HelloWorldSceneAR extends Component {
           position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
 
         {/* Emoji */}
-        <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
-          <Viro3DObject
+        {/* <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} > */}
+        {/* <Viro3DObject
             source={require('./res/emoji_smile/emoji_smile.vrx')}
             resources={[require('./res/emoji_smile/emoji_smile_diffuse.png'),
             require('./res/emoji_smile/emoji_smile_normal.png'),
             require('./res/emoji_smile/emoji_smile_specular.png')]}
             position={[-.5, .5, -1]}
             scale={[.2, .2, .2]}
-            type="VRX" />
+            type="VRX" /> */}
 
-        </ViroNode>
+        {/* </ViroNode> */}
 
         {/* Magikarp */}
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
@@ -75,22 +75,24 @@ export default class HelloWorldSceneAR extends Component {
 
         <Viro3DObject
           source={require('./res/Magikarp/MagikarpF.vrx')}
-          position={[-2, -1, 1]}
-          scale={[.002, .001, .002]}
+          position={[Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2]}
+          // position={[2,1,1,]}
+          scale={[.003, .003, .003]}
+          rotation={[90, 90, 180]}
           type="VRX"
-          dragType="FixedDistance" onDrag={() => { }}
-          animation={{ name: 'animateImage', run: true }}
+          direction={[0, -1, -.2]}
+          animation={{ name: "spin", run: true, loop: true }}
         />
 
         <Viro3DObject
-          source={require('./res/Magikarp/MagikarpF.vrx')}
-          position={[Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2]}
-          // position={[2,1,1,]}
+          source={require('./res/Gyarados/GyaradosM.vrx')}
+          // position={[Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2]}
+          position={[2, 1, 1,]}
           scale={[.002, .002, .002]}
           rotation={[90, 90, 180]}
           type="VRX"
           direction={[0, -1, -.2]}
-          animation={{ name: "rotate", run: true, loop: true }}
+        // animation={{ name: "spin", run: true, loop: true }}
         />
 
 
@@ -142,7 +144,7 @@ ViroAnimations.registerAnimations({
     properties: {
       rotateY: "+=90"
     },
-    duration: 250, //.25 seconds
+    duration: 100, //.25 seconds
   },
   animateImage: {
     properties: { scaleX: .01, scaleY: .01, scaleZ: .01, opacity: 1 },
