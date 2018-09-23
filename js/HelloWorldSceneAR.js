@@ -15,18 +15,22 @@ import {
   ViroParticleEmitter,
   ViroAnimations,
 } from 'react-viro';
+// TODO -
+const onClickEvent = function() { console.log("Hello world!"); }
 var createReactClass = require('create-react-class');
 var HelloWorldSceneAR = createReactClass({
   getInitialState() {
     return {
       text : "Initializing AR...",
-      currentAnim:"moveLeftRight"
+      activeFish : [{},{},{}],
+      currentAnim:"moveInstructions"
     };
   },
 
   render: function() {
     return (
       <ViroARScene onTrackingUpdated={()=>{this.setState({text : "Hello World!"})}}>
+
         <ViroText text={this.state.text} scale={[.1, .1, .1]} height={1} width={4} position={[0, .5, -1]} style={styles.helloWorldTextStyle} />
         <ViroParticleEmitter
   position={[0, 4.5, 0]}
@@ -88,37 +92,66 @@ var HelloWorldSceneAR = createReactClass({
     initialRange:[[-2,.5,0], [2,3.5,0]]}
   }}
 />
-
         <ViroAmbientLight color="#0077be"/>
         <ViroSpotLight innerAngle={5} outerAngle={90} direction={[0,-1,-.2]} position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
 
-        <Viro3DObject
-            source={require('./res/Magikarp/MagikarpF.vrx')}
-            // position={[Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2]}
-            position={[-3, 0, -1]}
+        {this.state.activeFish.map((item, i) => {
+          return(
+            <Viro3DObject
+              key={i}
+              source={ require('./res/Magikarp/MagikarpF.vrx') }
+              position={[Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2]}
+              // position={ [-3, 0, -1] }
+              type="VRX"
+              scale={ [.01, .01, .01] }
+              rotation={ [90, 90, 180] }
+              // direction={[0,-1,-.2]}
+              dragType="FixedToWorld"
+              onDrag={ () => { } }
+              onClick={ this._switchAnimation}
+              animation={
+                {
+                  name: this.state.currentAnim,
+                  run: true,
+                  interruptible: true
+                }
+              }
+            />,
+
+            // This is a static Magikarp that is always in the same place
+            <Viro3DObject
+            key={i}
+            source={ require('./res/Magikarp/MagikarpF.vrx') }
+            position={ [-3, 0, -1] }
             type="VRX"
-            scale={[.01, .01, .01]}
-            rotation={[90, 90, 180]}
+            scale={ [.01, .01, .01] }
+            rotation={ [90, 90, 180] }
             // direction={[0,-1,-.2]}
-            dragType="FixedToWorld" onDrag={()=>{}}
-            onClick={this._switchAnimation}
-            animation={{name:this.state.currentAnim, 
-              run:true, 
-              interruptible: true}}
+            dragType="FixedToWorld"
+            onDrag={ () => { } }
+            onClick={ this._switchAnimation}
+            animation={
+              {
+                name: this.state.currentAnim,
+                run: true,
+                interruptible: true
+              }
+            }
           />
-
-
+          )
+        })
+        }
       </ViroARScene>
     );
   },
   _switchAnimation() {
-    if(this.state.currentAnim == "moveLeftRight") {
+    if(this.state.currentAnim == "moveInstructions") {
         this.setState({
           currentAnim:"stop", 
         });
     } else {
        this.setState({
-          currentAnim:"moveLeftRight",
+          currentAnim:"moveInstructions",
        });
     }
  },     
@@ -128,7 +161,7 @@ var HelloWorldSceneAR = createReactClass({
 ViroAnimations.registerAnimations({
   moveRight:{properties:{positionX:"+=1"}, duration: 10000},
   stop:{properties:{positionX:"-=0"}, duration: 0},
-  moveLeftRight:[
+  moveInstructions:[
     ["moveRight", "stop"],
   ]
 });
