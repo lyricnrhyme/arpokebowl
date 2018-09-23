@@ -30,32 +30,36 @@ var HelloWorldSceneAR = createReactClass({
         <ViroAmbientLight color={"#aaaaaa"} />
         <ViroSpotLight innerAngle={5} outerAngle={90} direction={[0,-1,-.2]} position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
 
-                    {/* <Viro3DObject
+          <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
+          <Viro3DObject
             source={require('./res/Magikarp/MagikarpF.vrx')}
-            position={[2, -1, -1]}
-            scale={[.002, .002, .002]}
-            type="VRX"
-            dragType="FixedDistance" onDrag={()=>{}}
-            animation={{name:'animateImage', run:true}} 
-          /> */}
-                              <Viro3DObject
-            source={require('./res/Magikarp/MagikarpF.vrx')}
-            position={[-2, -1, 1]}
-            scale={[.002, .001, .002]}
-            type="VRX"
-            dragType="FixedDistance" onDrag={()=>{}}
-            animation={{name:'animateImage', run:true}} 
-          />
-
-                              <Viro3DObject
-            source={require('./res/Magikarp/MagikarpF.vrx')}
-            position={[Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2]}
-            type="VRX"
+            position={[0, 0, -1]}
             scale={[.002, .002, .002]}
             rotation={[90, 90, 180]}
-            direction={[0,-1,-.2]}
-          
-          ></Viro3DObject>
+            type="VRX"
+            dragType="FixedDistance" onDrag={() => { }}
+            animation={{ name: 'animateImage', run: true }}
+          />
+        </ViroNode>
+
+        <Viro3DObject
+          source={require('./res/Magikarp/MagikarpF.vrx')}
+          position={[-2, -1, 1]}
+          scale={[.002, .001, .002]}
+          type="VRX"
+          dragType="FixedDistance" onDrag={() => { }}
+          animation={{ name: 'animateImage', run: true }}
+        />
+
+        <Viro3DObject
+          source={require('./res/Magikarp/MagikarpF.vrx')}
+          position={[Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2]}
+          // position={[2,1,1,]}
+          scale={[.002, .002, .002]}
+          rotation={[90, 90, 180]}
+          type="VRX"
+          direction={[0, -1, -.2]}
+        />
 
       </ViroARScene>
     );
