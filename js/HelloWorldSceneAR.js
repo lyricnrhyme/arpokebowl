@@ -38,9 +38,10 @@ var HelloWorldSceneAR = createReactClass({
             this.state.activeFish.map((item, i) => {
               return (<Viro3DObject
                 source={require('./res/Magikarp/MagikarpF.vrx')}
-                position={[0, 0, -1 * i]}
+                position={[Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2]}
                 scale={[.002, .002, .002]}
                 rotation={[90, 90, 180]}
+                direction={[0,-1,-.2]}
                 type="VRX"
                 dragType="FixedDistance" onDrag={()=>{}}
                 animation={{name:'animateImage', run:true}}
@@ -48,9 +49,6 @@ var HelloWorldSceneAR = createReactClass({
               />)
             })
           }
-
-
-
       </ViroARScene>
     );
   },
