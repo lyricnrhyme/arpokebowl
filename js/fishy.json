@@ -14,5 +14,13 @@
   "gyarados": {
     "name": "gyarados",
     "description": "Puberty"
+  },
+  "psyduck": {
+    "name": "psyduck",
+    "description": "Same"
+  },
+  "wailord": {
+    "name": "wailord",
+    "description": "All Hail"
   }
 }
