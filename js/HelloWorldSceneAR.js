@@ -13,6 +13,7 @@ import {
   ViroARPlaneSelector,
   ViroNode,
   ViroParticleEmitter,
+  ViroSound,
   ViroAnimations,
 } from 'react-viro';
 import Fish3DModel from './Fish3DModel';
@@ -30,9 +31,25 @@ const HelloWorldSceneAR = createReactClass({
 
   render: function () {
     return (
-      <ViroARScene onTrackingUpdated={() => { this.setState({ text: "Hello World!" }) }}>
+
+      <ViroARScene onTrackingUpdated={()=>{this.setState({text : "Hello World!"})}}>
+      {/* <ViroSound paused={false}
+           muted={false}
+           source={require('./sound/Battle.mp3')}
+           loop={false}
+           volume={.75}
+           onFinish={this.onFinishSound}
+           onError={this.onErrorSound}/> */}
+      <ViroSound paused={true}
+           muted={false}
+           source={require('./sound/whosthatpokemon.mp3')}
+           loop={false}
+           volume={.75}
+           onFinish={this.onFinishSound}
+           onError={this.onErrorSound}/>
+
         <ViroAmbientLight color="#ffffff" />
-        <ViroSpotLight innerAngle={5} outerAngle={90} direction={[0, -1, -.2]} position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
+
         <ViroParticleEmitter
           position={[0, 4.5, 0]}
           duration={2000}
@@ -102,7 +119,7 @@ const HelloWorldSceneAR = createReactClass({
           // direction={[0,-1,-.2]}
           dragType="FixedToWorld"
           onDrag={() => { }}
-          // onClick={ this._test }
+          onClick={ this._test.bind(null, this) }
           animation={
             {
               name: this.state.currentAnim,
@@ -119,6 +136,7 @@ const HelloWorldSceneAR = createReactClass({
             scale={[.003, .003, .003]}
             rotation={[90, 140, 180]}
             type="VRX"
+            onClick={this._test.bind(null, this)}
             direction={[0, -1, -.2]}
             animation={{ name: "spin", run: true, loop: true }}
           />
@@ -126,7 +144,9 @@ const HelloWorldSceneAR = createReactClass({
       </ViroARScene>
     );
   },
-
+  _test() {
+    console.log(this);
+  },
   _switchAnimation() {
     if (this.state.currentAnim == "moveInstructions") {
       this.setState({
