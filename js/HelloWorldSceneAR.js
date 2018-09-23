@@ -13,6 +13,7 @@ import {
   ViroARPlaneSelector,
   ViroNode,
   ViroParticleEmitter,
+  ViroSound,
   ViroAnimations,
 } from 'react-viro';
 // TODO -
@@ -30,7 +31,20 @@ var HelloWorldSceneAR = createReactClass({
   render: function() {
     return (
       <ViroARScene onTrackingUpdated={()=>{this.setState({text : "Hello World!"})}}>
-
+      {/* <ViroSound paused={false}
+           muted={false}
+           source={require('./sound/Battle.mp3')}
+           loop={false}
+           volume={.75}
+           onFinish={this.onFinishSound}
+           onError={this.onErrorSound}/> */}
+      <ViroSound paused={true}
+           muted={false}
+           source={require('./sound/whosthatpokemon.mp3')}
+           loop={false}
+           volume={.75}
+           onFinish={this.onFinishSound}
+           onError={this.onErrorSound}/>
         <ViroText text={this.state.text} scale={[.1, .1, .1]} height={1} width={4} position={[0, .5, -1]} style={styles.helloWorldTextStyle} />
         <ViroParticleEmitter
   position={[0, 4.5, 0]}
