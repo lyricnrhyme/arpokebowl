@@ -165,7 +165,7 @@ const HelloWorldSceneAR = createReactClass({
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
             source={require('./res/Psyduck/Psyduck.vrx')}
-            position={[-1, 0.5, -2]}
+            position={[Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2]}
             scale={[.0035, .0035, .0035]}
             rotation={[90, 130, 180]}
             type="VRX"
@@ -177,7 +177,7 @@ const HelloWorldSceneAR = createReactClass({
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
             source={require('./res/Dragonair/Dragonair.vrx')}
-            position={[-1, 1, -1]}
+            position={[Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2]}
             scale={[.002, .002, .002]}
             rotation={[90, 150, 180]}
             type="VRX"
@@ -189,7 +189,7 @@ const HelloWorldSceneAR = createReactClass({
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
             source={require('./res/Wailord/Wailord.vrx')}
-            position={[1, .5, -1]}
+            position={[Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2]}
             scale={[.0005, .0005, .0005]}
             rotation={[90, 160, 180]}
             type="VRX"
@@ -201,7 +201,7 @@ const HelloWorldSceneAR = createReactClass({
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
             source={require('./res/Paras/Paras.vrx')}
-            position={[0, 1, -1]}
+            position={[Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2]}
             scale={[.005, .005, .005]}
             rotation={[90, 160, 180]}
             type="VRX"
@@ -213,7 +213,7 @@ const HelloWorldSceneAR = createReactClass({
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
             source={require('./res/Squirtle/Squirtle.vrx')}
-            position={[0, 0.5, -1]}
+            position={[Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2]}
             scale={[.006, .006, .006]}
             rotation={[90, 200, 180]}
             type="VRX"
