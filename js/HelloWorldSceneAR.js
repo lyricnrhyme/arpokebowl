@@ -35,57 +35,72 @@ const HelloWorldSceneAR = createReactClass({
 
   render: function () {
     return (
-      <ViroARScene onTrackingUpdated={() => { this.setState({ text: "Hello World!" }) }}>
-        <ViroSound paused={false}
-          muted={false}
-          source={require('./sound/ukulele.mp3')}
-          loop={false}
-          volume={.75}
-          onFinish={this.onFinishSound}
-          onError={this.onErrorSound} />
-        <ViroSound paused={false}
-          muted={false}
-          source={require('./sound/magikarp.mp3')}
-          loop={false}
-          volume={1}
-          onFinish={this.onFinishSound}
-          onError={this.onErrorSound} />
+      <ViroARScene onTrackingUpdated={()=>{this.setState({text : "Hello World!"})}}>
+      <ViroSound paused={false}
+           muted={false}
+           source={require('./sound/ukulele.mp3')}
+           loop={false}
+           volume={.75}
+           onFinish={this.onFinishSound}
+           onError={this.onErrorSound}/>
+
+          <ViroSound 
+          paused={false}
+           muted={false}
+           source={require('./sound/magikarp.mp3')}
+           loop={true}
+           volume={1}
+           onFinish={this.onFinishSound}
+           onError={this.onErrorSound}/>
 
         <ViroAmbientLight color="#ffffff" />
 
-        <ViroParticleEmitter
-          position={[0, -4, 0]}
-          duration={2000}
-          visible={true}
-          delay={0}
-          run={true}
-          loop={true}
-          fixedToEmitter={false}
+       <ViroParticleEmitter
+            key={"effect_bubbles"}
+            position={[0, -5.0, 0]}
+            duration={5000}
+            visible={true} 
+            delay={0}
+            run={true}
+            loop={true}
+            fixedToEmitter={true}
 
-          image={{
-            source: require("./res/bubble.png"),
-            height: 1,
-            width: 1,
-            bloomThreshold: 100
-          }}
+            image={{
+                   source:require("./res/particle_bubble.png"), 
+                   height:0.1,
+                   width:0.1
+            }}
 
-          spawnBehavior={{
-            particleLifetime: [4000, 4000],
-            emissionRatePerSecond: [150, 200],
-            spawnVolume: {
-              shape: "box",
-              params: [20, 1, 20],
-              spawnOnSurface: false
-            },
-            maxParticles: 40
-          }}
+            spawnBehavior={{
+              particleLifetime:[14000,14000],
+              emissionRatePerSecond:[80, 150], // or 300 with a max of 2000
+              spawnVolume:{shape:"box", params:[15, 1, 15], spawnOnSurface:false},
+              maxParticles:2000
+            }}
+            particleAppearance={{
+              opacity:{
+                initialRange:[0.0, 0.0],
+                factor:"Time",
+                interpolation:[
+                  {endValue:1.0, interval:[0,500]},
+                  {endValue:0.0, interval:[13700,14000]}
+                ]
+              },
+              scale:{
+                initialRange:[[1,1,1], [1,1,1]],
+                factor:"Time",
+                interpolation:[
+                  {endValue:[1.5,1.5,1.5], interval:[4000,9700]},
+                  {endValue:[3,3,3], interval:[13700,14000]}
+                ]
+              },
 
-          particlePhysics={{
-            velocity: {
-              initialRange: [[-2, .5, 0], [2, 3.5, 0]]
-            }
-          }}
-        />
+            }}
+
+            particlePhysics={{
+              velocity:{initialRange:[[-.1,.7,0], [.1,.95,0]]}
+            }}
+          />
 
         {this.state.activeFish.map((item, i) => {
           return (
