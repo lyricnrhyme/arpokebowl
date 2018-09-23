@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import {
   ViroARScene,
+  Viro360Image,
+  ViroARPlane,
+  ViroScene,
   ViroText,
   ViroMaterials,
   ViroBox,
@@ -31,22 +34,7 @@ const HelloWorldSceneAR = createReactClass({
 
   render: function () {
     return (
-
       <ViroARScene onTrackingUpdated={()=>{this.setState({text : "Hello World!"})}}>
-      <ViroSound paused={false}
-           muted={false}
-           source={require('./sound/Battle.mp3')}
-           loop={false}
-           volume={.75}
-           onFinish={this.onFinishSound}
-           onError={this.onErrorSound}/>
-      {/* <ViroSound paused={true}
-           muted={false}
-           source={require('./sound/whosthatpokemon.mp3')}
-           loop={false}
-           volume={.75}
-           onFinish={this.onFinishSound}
-           onError={this.onErrorSound}/> */}
 
         <ViroAmbientLight color="#ffffff" />
 
@@ -85,19 +73,19 @@ const HelloWorldSceneAR = createReactClass({
         />
 
         {this.state.activeFish.map((item, i) => {
-          return(
+          return (
             <Fish3DModel
               key={i}
               species="Magikarp"
-              source={ require('./res/Magikarp/MagikarpF.vrx') }
-              position={[Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2]}
+              source={require('./res/Magikarp/MagikarpF.vrx')}
+              position={[Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2]}
               // position={ [-3, 0, -1] }
               type="VRX"
               scale={[.01, .01, .01]}
               rotation={[90, 90, 180]}
               // direction={[0,-1,-.2]}
               dragType="FixedToWorld"
-              onDrag={ () => { } }
+              onDrag={() => { }}
               animation={
                 {
                   name: this.state.currentAnim,
@@ -119,7 +107,7 @@ const HelloWorldSceneAR = createReactClass({
           // direction={[0,-1,-.2]}
           dragType="FixedToWorld"
           onDrag={() => { }}
-          onClick={ this._test.bind(null, this) }
+          onClick={this._test.bind(null, this)}
           animation={
             {
               name: this.state.currentAnim,
@@ -141,6 +129,43 @@ const HelloWorldSceneAR = createReactClass({
             animation={{ name: "spin", run: true, loop: true }}
           />
         </ViroNode>
+
+        <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
+          <Fish3DModel
+            source={require('./res/Psyduck/Psyduck.vrx')}
+            position={[1, .5, -1]}
+            scale={[.002, .002, .002]}
+            rotation={[90, 140, 180]}
+            type="VRX"
+            direction={[0, -1, -.2]}
+          // animation={{ name: "spin", run: true, loop: true }}
+          />
+        </ViroNode>
+
+        <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
+          <Fish3DModel
+            source={require('./res/Shellder/pm0090_00.vrx')}
+            position={[2, 1, -1]}
+            scale={[.002, .002, .002]}
+            rotation={[90, 140, 180]}
+            type="VRX"
+            direction={[0, -1, -.2]}
+          // animation={{ name: "spin", run: true, loop: true }}
+          />
+        </ViroNode>
+
+        <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
+          <Fish3DModel
+            source={require('./res/Wailord/Wailord.vrx')}
+            position={[1, -0.5, -0.5]}
+            scale={[.002, .002, .002]}
+            rotation={[90, 140, 180]}
+            type="VRX"
+            direction={[0, -1, -.2]}
+          // animation={{ name: "spin", run: true, loop: true }}
+          />
+        </ViroNode>
+
       </ViroARScene>
     );
   },
