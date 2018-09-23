@@ -149,6 +149,41 @@ var HelloWorldSceneAR = createReactClass({
                 direction={[0, -1, -.2]}
                 animation={{ name: "spin", run: true, loop: true }}
               />
+            </ViroNode> ,
+
+            <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
+              <Viro3DObject
+                source={require('./res/Psyduck/Psyduck.vrx')}
+                position={[1, .5, -1]}
+                scale={[.002, .002, .002]}
+                rotation={[90, 140, 180]}
+                type="VRX"
+                direction={[0, -1, -.2]}
+              // animation={{ name: "spin", run: true, loop: true }}
+              />
+            </ViroNode> ,
+
+            <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
+              <Viro3DObject
+                source={require('./res/Shellder/pm0090_00.vrx')}
+                position={[2, 1, -1]}
+                scale={[.002, .002, .002]}
+                rotation={[90, 140, 180]}
+                type="VRX"
+                direction={[0, -1, -.2]}
+              // animation={{ name: "spin", run: true, loop: true }}
+              />
+            </ViroNode> ,
+            <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
+              <Viro3DObject
+                source={require('./res/Wailord/Wailord.vrx')}
+                position={[1, -0.5, -0.5]}
+                scale={[.002, .002, .002]}
+                rotation={[90, 140, 180]}
+                type="VRX"
+                direction={[0, -1, -.2]}
+              // animation={{ name: "spin", run: true, loop: true }}
+              />
             </ViroNode>
           )
         })
