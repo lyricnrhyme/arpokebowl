@@ -50,7 +50,7 @@ var HelloWorldSceneAR = createReactClass({
                               <Viro3DObject
             source={require('./res/Magikarp/MagikarpF.vrx')}
             position={[Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2]}
-            // position={[2,1,1,]}
+            type="VRX"
             scale={[.002, .002, .002]}
             rotation={[90, 90, 180]}
             direction={[0,-1,-.2]}
