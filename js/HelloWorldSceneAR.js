@@ -110,7 +110,7 @@ const HelloWorldSceneAR = createReactClass({
         })
         }
 
-        <Viro3DObject
+        <Fish3DModel
           source={require('./res/Magikarp/MagikarpF.vrx')}
           position={[-3, 0, -1]}
           type="VRX"
@@ -130,7 +130,7 @@ const HelloWorldSceneAR = createReactClass({
         />
 
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
-          <Viro3DObject
+          <Fish3DModel
             source={require('./res/Gyarados/GyaradosM.vrx')}
             position={[-.5, .5, -1]}
             scale={[.003, .003, .003]}
