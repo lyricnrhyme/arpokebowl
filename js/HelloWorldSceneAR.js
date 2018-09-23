@@ -31,19 +31,21 @@ var HelloWorldSceneAR = createReactClass({
         <ViroAmbientLight color={"#aaaaaa"} />
         <ViroSpotLight innerAngle={5} outerAngle={90} direction={[0,-1,-.2]} position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
 
-
-          <Viro3DObject
+        <Viro3DObject
             source={require('./res/Magikarp/MagikarpF.vrx')}
+            // position={[Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2, Math.floor(Math.random() * 5)-2]}
             position={[-3, 0, -1]}
+            type="VRX"
             scale={[.01, .01, .01]}
             rotation={[90, 90, 180]}
-            type="VRX"
-            dragType="FixedDistance" onDrag={()=>{}}
+            // direction={[0,-1,-.2]}
+            dragType="FixedToWorld" onDrag={()=>{}}
             onClick={this._switchAnimation}
             animation={{name:this.state.currentAnim, 
               run:true, 
               interruptible: true}}
           />
+
 
       </ViroARScene>
     );
