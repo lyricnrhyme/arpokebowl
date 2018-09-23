@@ -115,10 +115,10 @@ const HelloWorldSceneAR = createReactClass({
 
         <Fish3DModel
           source={require('./res/Magikarp/MagikarpF.vrx')}
-          position={[-3, 0, -1]}
+          position={[1, .5, -1]}
           type="VRX"
           scale={[.01, .01, .01]}
-          rotation={[90, 90, 180]}
+          rotation={[90, 180, 180]}
           // direction={[0,-1,-.2]}
           dragType="FixedToWorld"
           onDrag={() => { }}
@@ -135,8 +135,8 @@ const HelloWorldSceneAR = createReactClass({
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
             source={require('./res/Gyarados/GyaradosM.vrx')}
-            position={[-.5, .5, -1]}
-            scale={[.003, .003, .003]}
+            position={[-2, 1, -1]}
+            scale={[.0025, .0025, .0025]}
             rotation={[90, 140, 180]}
             type="VRX"
             onClick={this._test.bind(null, this)}
@@ -148,9 +148,9 @@ const HelloWorldSceneAR = createReactClass({
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
             source={require('./res/Psyduck/Psyduck.vrx')}
-            position={[1, .5, -1]}
-            scale={[.002, .002, .002]}
-            rotation={[90, 140, 180]}
+            position={[-1, 0.5, -2]}
+            scale={[.0035, .0035, .0035]}
+            rotation={[90, 130, 180]}
             type="VRX"
             direction={[0, -1, -.2]}
           // animation={{ name: "spin", run: true, loop: true }}
@@ -159,10 +159,10 @@ const HelloWorldSceneAR = createReactClass({
 
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
-            source={require('./res/Shellder/pm0090_00.vrx')}
-            position={[2, 1, -1]}
+            source={require('./res/Dragonair/Dragonair.vrx')}
+            position={[-1, 1, -1]}
             scale={[.002, .002, .002]}
-            rotation={[90, 140, 180]}
+            rotation={[90, 150, 180]}
             type="VRX"
             direction={[0, -1, -.2]}
           // animation={{ name: "spin", run: true, loop: true }}
@@ -172,9 +172,33 @@ const HelloWorldSceneAR = createReactClass({
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
             source={require('./res/Wailord/Wailord.vrx')}
-            position={[1, -0.5, -0.5]}
-            scale={[.002, .002, .002]}
-            rotation={[90, 140, 180]}
+            position={[1, .5, -1]}
+            scale={[.0005, .0005, .0005]}
+            rotation={[90, 160, 180]}
+            type="VRX"
+            direction={[0, -2, -.2]}
+          // animation={{ name: "spin", run: true, loop: true }}
+          />
+        </ViroNode>
+
+        <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
+          <Fish3DModel
+            source={require('./res/Paras/Paras.vrx')}
+            position={[0, 1, -1]}
+            scale={[.005, .005, .005]}
+            rotation={[90, 160, 180]}
+            type="VRX"
+            direction={[0, -1, -.2]}
+          // animation={{ name: "spin", run: true, loop: true }}
+          />
+        </ViroNode>
+
+        <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
+          <Fish3DModel
+            source={require('./res/Squirtle/Squirtle.vrx')}
+            position={[0, 0.5, -1]}
+            scale={[.006, .006, .006]}
+            rotation={[90, 200, 180]}
             type="VRX"
             direction={[0, -1, -.2]}
           // animation={{ name: "spin", run: true, loop: true }}
