@@ -138,7 +138,18 @@ var HelloWorldSceneAR = createReactClass({
                   interruptible: true
                 }
               }
-            />
+            /> ,
+            <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
+              <Viro3DObject
+                source={require('./res/Gyarados/GyaradosM.vrx')}
+                position={[-.5, .5, -1]}
+                scale={[.003, .003, .003]}
+                rotation={[90, 140, 180]}
+                type="VRX"
+                direction={[0, -1, -.2]}
+                animation={{ name: "spin", run: true, loop: true }}
+              />
+            </ViroNode>
           )
         })
         }
@@ -164,7 +175,13 @@ ViroAnimations.registerAnimations({
   stop: { properties: { positionX: "-=0" }, duration: 0 },
   moveInstructions: [
     ["moveRight", "stop"],
-  ]
+  ],
+  spin: {
+    properties: {
+      rotateY: "+=90"
+    },
+    duration: 1000, //.25 seconds
+  },
 });
 
 var styles = StyleSheet.create({
