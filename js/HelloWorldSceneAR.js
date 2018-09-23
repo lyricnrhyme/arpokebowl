@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 import {StyleSheet} from 'react-native';
 import {
   ViroARScene,
+  Viro360Image,
+  ViroARPlane,
+  ViroScene,
   ViroText,
   ViroMaterials,
   ViroBox,
@@ -29,8 +32,16 @@ var HelloWorldSceneAR = createReactClass({
   render: function() {
     return (
       <ViroARScene onTrackingUpdated={()=>{this.setState({text : "Hello World!"})}}>
+
         <ViroAmbientLight color={"#aaaaaa"} />
         <ViroSpotLight innerAngle={5} outerAngle={90} direction={[0,-1,-.2]} position={[0, 3, 1]} color="#ffffff" castsShadow={true} />
+
+        <Viro360Image
+      source={require("./res/blueWater.png")}
+      format="RGBA8"
+      onLoadStart={this._onLoadStart}
+      onLoadEnd={this._onLoadEnd}
+      onError={this._onError} />
 
         {this.state.activeFish.map((item, i) => {
           return(
@@ -41,7 +52,7 @@ var HelloWorldSceneAR = createReactClass({
               // position={ [-3, 0, -1] }
               type="VRX"
               scale={ [.01, .01, .01] }
-              rotation={ [90, 90, 180] }
+              rotation={ [90, Math.floor(Math.random() * 360), 180] }
               // direction={[0,-1,-.2]}
               dragType="FixedToWorld"
               onDrag={ () => { } }
