@@ -116,7 +116,6 @@ const HelloWorldSceneAR = createReactClass({
               type="VRX"
               scale={[.01, .01, .01]}
               rotation={[90, 90, 180]}
-              // direction={[0,-1,-.2]}
               dragType="FixedToWorld"
               onDrag={() => { }}
               animation={
@@ -137,7 +136,6 @@ const HelloWorldSceneAR = createReactClass({
           type="VRX"
           scale={[.01, .01, .01]}
           rotation={[90, 180, 180]}
-          // direction={[0,-1,-.2]}
           dragType="FixedToWorld"
           onDrag={() => { }}
           onClick={this._test.bind(null, this)}
