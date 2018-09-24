@@ -20,6 +20,7 @@ import {
   ViroAnimations,
 } from 'react-viro';
 import Fish3DModel from './Fish3DModel';
+import fishData from './fishy.json';
 // TODO -
 
 const createReactClass = require('create-react-class');
@@ -27,88 +28,98 @@ const HelloWorldSceneAR = createReactClass({
   getInitialState() {
     return {
       text: "Initializing AR...",
-      activeFish: [{}, {}, {}],
+      activeFish: Object.values(fishData),
       currentAnim: "moveInstructions"
     };
   },
 
   render: function () {
     return (
-      <ViroARScene onTrackingUpdated={()=>{this.setState({text : "Hello World!"})}}>
-      <ViroSound paused={false}
-           muted={false}
-           source={require('./sound/ukulele.mp3')}
-           loop={false}
-           volume={.75}
-           onFinish={this.onFinishSound}
-           onError={this.onErrorSound}/>
+      <ViroARScene onTrackingUpdated={() => { this.setState({ text: "Hello World!" }) }}>
 
-          <ViroSound 
+        <Viro360Image
+          source={require("./res/beach.hdr")}
+          rotation={[0, 45, 0]}
+          format="RGBA8"
+          onLoadStart={this._onLoadStart}
+          onLoadEnd={this._onLoadEnd}
+          onError={this._onError}
+          isHdr={true}
+        />
+        <ViroSound paused={false}
+          muted={false}
+          source={require('./sound/ukulele.mp3')}
+          loop={false}
+          volume={.75}
+          onFinish={this.onFinishSound}
+          onError={this.onErrorSound} />
+
+        <ViroSound
           paused={false}
-           muted={false}
-           source={require('./sound/magikarp.mp3')}
-           loop={true}
-           volume={1}
-           onFinish={this.onFinishSound}
-           onError={this.onErrorSound}/>
+          muted={false}
+          source={require('./sound/magikarp.mp3')}
+          loop={true}
+          volume={1}
+          onFinish={this.onFinishSound}
+          onError={this.onErrorSound} />
 
         <ViroAmbientLight color="#ffffff" />
 
-       <ViroParticleEmitter
-            key={"effect_bubbles"}
-            position={[0, -5.0, 0]}
-            duration={5000}
-            visible={true} 
-            delay={0}
-            run={true}
-            loop={true}
-            fixedToEmitter={true}
+        <ViroParticleEmitter
+          key={"effect_bubbles"}
+          position={[0, -5.0, 0]}
+          duration={5000}
+          visible={true}
+          delay={0}
+          run={true}
+          loop={true}
+          fixedToEmitter={true}
 
-            image={{
-                   source:require("./res/particle_bubble.png"), 
-                   height:0.1,
-                   width:0.1
-            }}
+          image={{
+            source: require("./res/particle_bubble.png"),
+            height: 0.1,
+            width: 0.1
+          }}
 
-            spawnBehavior={{
-              particleLifetime:[14000,14000],
-              emissionRatePerSecond:[80, 150], // or 300 with a max of 2000
-              spawnVolume:{shape:"box", params:[15, 1, 15], spawnOnSurface:false},
-              maxParticles:2000
-            }}
-            particleAppearance={{
-              opacity:{
-                initialRange:[0.0, 0.0],
-                factor:"Time",
-                interpolation:[
-                  {endValue:1.0, interval:[0,500]},
-                  {endValue:0.0, interval:[13700,14000]}
-                ]
-              },
-              scale:{
-                initialRange:[[1,1,1], [1,1,1]],
-                factor:"Time",
-                interpolation:[
-                  {endValue:[1.5,1.5,1.5], interval:[4000,9700]},
-                  {endValue:[3,3,3], interval:[13700,14000]}
-                ]
-              },
+          spawnBehavior={{
+            particleLifetime: [14000, 14000],
+            emissionRatePerSecond: [80, 150], // or 300 with a max of 2000
+            spawnVolume: { shape: "box", params: [15, 1, 15], spawnOnSurface: false },
+            maxParticles: 2000
+          }}
+          particleAppearance={{
+            opacity: {
+              initialRange: [0.0, 0.0],
+              factor: "Time",
+              interpolation: [
+                { endValue: 1.0, interval: [0, 500] },
+                { endValue: 0.0, interval: [13700, 14000] }
+              ]
+            },
+            scale: {
+              initialRange: [[1, 1, 1], [1, 1, 1]],
+              factor: "Time",
+              interpolation: [
+                { endValue: [1.5, 1.5, 1.5], interval: [4000, 9700] },
+                { endValue: [3, 3, 3], interval: [13700, 14000] }
+              ]
+            },
 
-            }}
+          }}
 
-            particlePhysics={{
-              velocity:{initialRange:[[-.1,.7,0], [.1,.95,0]]}
-            }}
-          />
+          particlePhysics={{
+            velocity: { initialRange: [[-.1, .7, 0], [.1, .95, 0]] }
+          }}
+        />
 
         {this.state.activeFish.map((item, i) => {
           return (
             <Fish3DModel
               key={i}
-              species="Magikarp"
+              // species={item.name}
+              // description={item.description}
               source={require('./res/Magikarp/MagikarpF.vrx')}
               position={[Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2, Math.floor(Math.random() * 5) - 2]}
-              // position={ [-3, 0, -1] }
               type="VRX"
               scale={[.01, .01, .01]}
               rotation={[90, 90, 180]}
@@ -128,6 +139,8 @@ const HelloWorldSceneAR = createReactClass({
         }
 
         <Fish3DModel
+          species="Magikarp"
+          description="Use splash"
           source={require('./res/Magikarp/MagikarpF.vrx')}
           position={[1, .5, -1]}
           type="VRX"
@@ -148,6 +161,8 @@ const HelloWorldSceneAR = createReactClass({
 
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
+            species="Gyarados"
+            description="Water/Flying type"
             source={require('./res/Gyarados/GyaradosM.vrx')}
             position={[-2, 1, -1]}
             scale={[.0025, .0025, .0025]}
@@ -161,6 +176,8 @@ const HelloWorldSceneAR = createReactClass({
 
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
+            species="Psyduck"
+            description="Confused"
             source={require('./res/Psyduck/Psyduck.vrx')}
             position={[-1, 0.5, -2]}
             scale={[.0035, .0035, .0035]}
@@ -173,6 +190,8 @@ const HelloWorldSceneAR = createReactClass({
 
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
+            species="Dragonair"
+            description="Shiny pokemon"
             source={require('./res/Dragonair/Dragonair.vrx')}
             position={[-1, 1, -1]}
             scale={[.002, .002, .002]}
@@ -185,6 +204,8 @@ const HelloWorldSceneAR = createReactClass({
 
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
+            species="Wailord"
+            description="Float whale"
             source={require('./res/Wailord/Wailord.vrx')}
             position={[1, .5, -1]}
             scale={[.0005, .0005, .0005]}
@@ -197,6 +218,8 @@ const HelloWorldSceneAR = createReactClass({
 
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
+            species="Paras"
+            description="Crab-bug pokemon"
             source={require('./res/Paras/Paras.vrx')}
             position={[0, 1, -1]}
             scale={[.005, .005, .005]}
@@ -209,6 +232,8 @@ const HelloWorldSceneAR = createReactClass({
 
         <ViroNode position={[0, -1, 0]} dragType="FixedToWorld" onDrag={() => { }} >
           <Fish3DModel
+            species="Squirtle"
+            description="Turtle"
             source={require('./res/Squirtle/Squirtle.vrx')}
             position={[0, 0.5, -1]}
             scale={[.006, .006, .006]}
